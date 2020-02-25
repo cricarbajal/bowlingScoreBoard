@@ -183,6 +183,11 @@ public class BowlingScoreBoard implements Bowling {
         return frameScoreMap;
     }
 
+    public int getScoreCounter() {
+
+        return scoreCounter;
+    }
+
     public class Frame {
 
         private int[] scores = new int[MAX_ATTEMPTS_PER_FRAME];

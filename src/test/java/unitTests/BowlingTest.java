@@ -1,3 +1,5 @@
+package unitTests;
+
 import bowling.domain.Bowling;
 import bowling.domain.BowlingScoreBoard;
 import org.junit.Assert;

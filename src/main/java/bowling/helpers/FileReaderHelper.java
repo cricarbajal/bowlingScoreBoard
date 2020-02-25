@@ -12,8 +12,9 @@ public class FileReaderHelper {
         if (args.length == 1) {
             inputFile = new File(args[0]);
         } else {
-            System.err.println("Invalid arguments count:" + args.length);
-            System.exit(1);
+            throw new IOException();
+            //System.err.println("Invalid arguments count:" + args.length);
+            //System.exit(1);
         }
 
         String fileText = "";
