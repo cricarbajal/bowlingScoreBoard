@@ -1,0 +1,63 @@
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.rar
+*.jar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Eclipse, IntelliJ and ant generated build content.
+build
+bin
+dist
+target
+.classpath
+.project
+.settings
+lib
+.idea
+*.iml
+
+# Editor related temp files
+*.swp
+*~
+
+# Ant and Eclipse
+.ant-targets-build.xml
+*.classpath
+
+#Build log files
+BuildLogger*
+sdk_installer_log
+
+
+kit/**
