@@ -21,7 +21,7 @@ public class BowlingScoreHelper {
             int firstScore = player.getScoreBoard().getFrames().get(i).getScores()[0];
             int secondScore = player.getScoreBoard().getFrames().get(i).getScores()[1];
             if(player.getScoreBoard().isBonusFrame() && i == 10){
-                System.out.print("X" + "  ");
+                System.out.print("X" + "   ");
             }
             if(firstScore == 10){
                 System.out.print("X" + "   ");
@@ -32,7 +32,9 @@ public class BowlingScoreHelper {
                 System.out.print("/" + "   ");
             }else if(firstScore == 10 && secondScore == 0){
                 System.out.print("   ");
-            }else {
+            }else if(firstScore == 10 && secondScore == 10){
+                System.out.print("X" + "   ");
+            } else {
                 System.out.print(secondScore + "   ");
             }
         }

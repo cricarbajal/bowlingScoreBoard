@@ -37,6 +37,14 @@ public class BowlingScoreBoard implements Bowling {
         Frame frame = getFrame();
 
         if (frame == null) {
+            if(strikeCounter == 11){
+                Frame bonus = new Frame();
+                bonus.setFirstScore(10);
+                bonus.setSecondScore(10);
+                frames.add(bonus);
+                generateAllStrikeMap();
+                return;
+            }
             throw new BowlingException("all attempts exhausted - start new game");
         }
 
@@ -119,7 +127,7 @@ public class BowlingScoreBoard implements Bowling {
                 frameScoreMap.put(frameCounter - 1, scoreCounter);
             } else if (prev.isStrike() && curr.noAttempts == MAX_ATTEMPTS_PER_FRAME) {
                 if (curr.isStrike()) {
-                    Frame prevPrev = frames.get(frameCounter - 2);
+                    Frame prevPrev = frameCounter > 2 ? frames.get(frameCounter - 2) : null;
                     if (prevPrev != null && prevPrev.isStrike()) {
                         score = 20 + curr.score();
                         scoreCounter += score;
@@ -188,6 +196,14 @@ public class BowlingScoreBoard implements Bowling {
         return scoreCounter;
     }
 
+    private void generateAllStrikeMap(){
+        int points = 30;
+        for (int i = 0; i < 10; i++) {
+            frameScoreMap.put(i,points);
+            points += 30;
+        }
+    }
+
     public class Frame {
 
         private int[] scores = new int[MAX_ATTEMPTS_PER_FRAME];
@@ -241,6 +257,16 @@ public class BowlingScoreBoard implements Bowling {
         private int getSecondScore() {
 
             return scores[1];
+        }
+
+        private void setFirstScore(int newScore) {
+
+            scores[0] = newScore;
+        }
+
+        private void setSecondScore(int newScore) {
+
+            scores[1] = newScore;
         }
 
         public int[] getScores() {
