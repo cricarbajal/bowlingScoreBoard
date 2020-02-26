@@ -20,15 +20,14 @@ public class BowlingScoreBoard implements Bowling {
 
     public BowlingScoreBoard() {
 
-        frames = new ArrayList<Frame>(MAX_FRAMES);
+        frames = new ArrayList<>(MAX_FRAMES);
 
         for (int i = 0; i < MAX_FRAMES; i++) {
             frames.add(new Frame());
         }
     }
 
-    @Override
-    public void roll(int noOfPins) {
+    @Override public void roll(int noOfPins) {
 
         if (noOfPins > MAX_PINS) {
             throw new BowlingException("illegal argument " + noOfPins);
@@ -37,7 +36,7 @@ public class BowlingScoreBoard implements Bowling {
         Frame frame = getFrame();
 
         if (frame == null) {
-            if(strikeCounter == 11){
+            if (strikeCounter == 11) {
                 Frame bonus = new Frame();
                 bonus.setFirstScore(10);
                 bonus.setSecondScore(10);
@@ -57,7 +56,6 @@ public class BowlingScoreBoard implements Bowling {
                 frame.limitToOneAttempt();
             }
         }
-
     }
 
     /**
@@ -66,9 +64,7 @@ public class BowlingScoreBoard implements Bowling {
     private Frame getFrame() {
 
         Frame frame = getCurrentFrame();
-
         if (frame.isDone()) {
-
             // new bonus frame
             if (isLastFrame() && (frame.isSpare() || frame.isStrike())) {
                 Frame bonus = new Frame();
@@ -76,23 +72,18 @@ public class BowlingScoreBoard implements Bowling {
                 frameCounter++;
                 return bonus;
             }
-
             frameCounter++;
             if (frameCounter == MAX_FRAMES || isBonusFrame()) {
                 return null;
             }
-
             frame = getCurrentFrame();
         }
-
         return frame;
     }
 
-    @Override
-    public int score() {
+    @Override public int score() {
 
         int score;
-
         if (frameCounter == 0) {
             Frame curr = getCurrentFrame();
             return curr.score();
@@ -135,10 +126,10 @@ public class BowlingScoreBoard implements Bowling {
 
                     }
                 } else {
-                    Frame prevPrev =  frameCounter > 2 ? frames.get(frameCounter - 2) : null;
-                    if(prevPrev != null && prevPrev.isStrike()){
-                        scoreCounter+= 20 + curr.getFirstScore();
-                        frameScoreMap.put(frameCounter -2, scoreCounter);
+                    Frame prevPrev = frameCounter > 2 ? frames.get(frameCounter - 2) : null;
+                    if (prevPrev != null && prevPrev.isStrike()) {
+                        scoreCounter += 20 + curr.getFirstScore();
+                        frameScoreMap.put(frameCounter - 2, scoreCounter);
                     }
                     score = (10 + curr.getFirstScore() + curr.getSecondScore());
                     scoreCounter += score;
@@ -196,10 +187,11 @@ public class BowlingScoreBoard implements Bowling {
         return scoreCounter;
     }
 
-    private void generateAllStrikeMap(){
+    private void generateAllStrikeMap() {
+
         int points = 30;
         for (int i = 0; i < 10; i++) {
-            frameScoreMap.put(i,points);
+            frameScoreMap.put(i, points);
             points += 30;
         }
     }
@@ -279,6 +271,7 @@ public class BowlingScoreBoard implements Bowling {
     public class BowlingException extends RuntimeException {
 
         BowlingException(String message) {
+
             super(message);
         }
     }

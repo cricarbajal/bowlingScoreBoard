@@ -14,17 +14,19 @@ import java.util.Map;
 public class Application {
 
     public static void main(final String[] args) throws IOException {
-        try{
+
+        try {
             FileReaderHelper readerHelper = new FileReaderHelper();
             BowlingScoreHelper scoreHelper = new BowlingScoreHelper();
             String fileText = readerHelper.readFromInputStream(args);
-            List<Player> players = scoreHelper.determinePlayers(fileText,readerHelper);
+            List<Player> players = scoreHelper.determinePlayers(fileText, readerHelper);
             players.forEach(player -> {
-                BowlingScoreBoard scoreBoard = scoreHelper.setPlayerScore(player,fileText,readerHelper);
+                BowlingScoreBoard scoreBoard =
+                        scoreHelper.setPlayerScore(player, fileText, readerHelper);
                 player.setScoreBoard(scoreBoard);
                 scoreHelper.printPlayerGameSummary(player);
             });
-        }catch (Exception e){
+        } catch (Exception e) {
             System.err.println("Invalid arguments count:" + args.length);
             System.exit(1);
         }

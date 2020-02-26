@@ -5,16 +5,13 @@ import java.io.*;
 
 public class FileReaderHelper {
 
-    public String readFromInputStream(String[] args)
-            throws IOException {
+    public String readFromInputStream(String[] args) throws IOException {
 
         File inputFile = null;
         if (args.length == 1) {
             inputFile = new File(args[0]);
         } else {
             throw new IOException();
-            //System.err.println("Invalid arguments count:" + args.length);
-            //System.exit(1);
         }
 
         String fileText = "";
@@ -35,19 +32,22 @@ public class FileReaderHelper {
         return fileText;
     }
 
-    public String[] slitLines(String inputFile){
+    public String[] slitLines(String inputFile) {
+
         return inputFile.split("\\r?\\n");
     }
 
-    public String getNameFromLine(String line){
+    public String getNameFromLine(String line) {
+
         return line.split(" ")[0];
     }
 
-    public int getScoreFromLine(String line){
+    public int getScoreFromLine(String line) {
+
         String score = line.split(" ")[1];
-        if(score.equalsIgnoreCase("f")){
+        if (score.equalsIgnoreCase("f")) {
             return 0;
-        }else {
+        } else {
             return Integer.parseInt(line.split(" ")[1]);
         }
     }
